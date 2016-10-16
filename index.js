@@ -55,7 +55,7 @@ app.post('/postList', function(request, response) {
   });
 });
 
-app.post('/request', function(request, response) {
+app.get('/request', function(request, response) {
   var name = request.body.vList +"";
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     //client.query("INSERT INTO test_table values($1, $2)", [2, name]);
@@ -64,7 +64,7 @@ app.post('/request', function(request, response) {
       if (err){ console.error(err); response.send("Error " + err); }
       else{ 
         response.render('pages/dbtest', {results: result.rows} ); 
-
+        
       }
     });
   });
