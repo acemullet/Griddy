@@ -42,12 +42,13 @@ app.get('/db', function (request, response) {
 app.post('/myaction', function(request, response) {
   var name = request.body.firstname +"";
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('INSERT into test_table values (1, `name`);', function(err, result) {
-      done();
-      if (err)
-       { console.error(err); response.send("Error " + err); }
-      else
-       { response.render('pages/db', {results: result.rows} ); }
-    });
+    client.query("INSERT INTO test_table values($1, $2)", [2, name]);
+    // client.query('INSERT into test_table values (1, `name`);', function(err, result) {
+    //   done();
+    //   if (err)
+    //    { console.error(err); response.send("Error " + err); }
+    //   else
+    //    { response.render('pages/db', {results: result.rows} ); }
+    // });
   });
 });
