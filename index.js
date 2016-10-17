@@ -71,8 +71,8 @@ app.get('/request', function(request, response) {
 // inserts many
 app.get('/insertordered', function(request, response) {
 
-    var X = 10;
-    var Y = 10;
+    var X = 11;
+    var Y = 11;
     var x = 0;
     var y = 0;
     var dx = 0;
@@ -83,8 +83,8 @@ app.get('/insertordered', function(request, response) {
 
     for(var i =0; i < maxI; i++){
         if ((-X/2 <= x) && (x <= X/2) && (-Y/2 <= y) && (y <= Y/2)){
-            tList.push(x+3);
-            tList.push(y+3);
+            tList.push(x+5);
+            tList.push(y+5);
         }
         if( (x == y) || ((x < 0) && (x == -y)) || ((x > 0) && (x == 1-y))){
             t = dx;
