@@ -55,6 +55,23 @@ app.post('/postList', function(request, response) {
   });
 });
 
+app.get('/popRequest', function(request, response) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query('SELECT id, xpos, ypos, status FROM canvas_map_dev WHERE status = 0 order by id asc fetch first 1 rows only', 
+    function(err, result) {
+      done();
+      if (err){ console.error(err); response.send("Error " + err); }
+      else{ 
+
+        alert(results.rows);
+
+        //response.render('pages/dbtest', {results: result.rows} ); 
+        
+      }
+    });
+  });
+});
+
 app.get('/request', function(request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT xpos,ypos FROM canvas_map', function(err, result) {
