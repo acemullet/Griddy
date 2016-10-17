@@ -71,8 +71,8 @@ app.get('/request', function(request, response) {
 // inserts many
 app.get('/insertordered', function(request, response) {
 
-    var X = 5;
-    var Y = 5;
+    var X = 10;
+    var Y = 10;
     var x = 0;
     var y = 0;
     var dx = 0;
