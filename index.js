@@ -97,7 +97,7 @@ app.get('/insertordered', function(request, response) {
     
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 
-  for(var j = 0; j < 10; j+=2){
+  for(var j = 0; j < tList.length / 2; j+=2){
         client.query('INSERT INTO canvas_map (xpos,ypos,bitmap,status) VALUES ($1, $2, $3, $4);', [tList[j], tList[j+1],'test',0]);
 
 
