@@ -68,5 +68,43 @@ app.get('/request', function(request, response) {
   });
 });
 
+// inserts many
+app.get('/insertordered', function(request, response) {
+
+    var X = 5;
+    var Y = 5;
+    var x = 0;
+    var y = 0;
+    var dx = 0;
+    var dy = -1;
+    var t = X;
+    var maxI = t*t;
+    var tList = [];
+
+    for(var i =0; i < maxI; i++){
+        if ((-X/2 <= x) && (x <= X/2) && (-Y/2 <= y) && (y <= Y/2)){
+            tList.push(x+3);
+            tList.push(y+3);
+        }
+        if( (x == y) || ((x < 0) && (x == -y)) || ((x > 0) && (x == 1-y))){
+            t = dx;
+            dx = -dy;
+            dy = t;
+        }
+        x += dx;
+        y += dy;
+    }
+    
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+
+  for(var j = 0; j < 10; j+=2){
+        client.query('INSERT INTO canvas_map (xpos,ypos,bitmap,status) VALUES ($1, $2, $3, $4);', [tList[j], tList[j+1],'test',0]);
+
+
+  }
+
+
+  });
+});
 
 
