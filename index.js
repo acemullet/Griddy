@@ -68,8 +68,57 @@ app.get('/request', function(request, response) {
   });
 });
 
+app.get('/insertordereddiamond', function(request, response) {
+
+    var x;
+    var y;
+    x = 26;
+    y = 26;
+
+    dList.push(x);
+    dList.push(y);
+    y++;
+
+    for(var lvl = 1; lvl < 25; lvl++){
+        for(i =0; i<lvl; i++){
+            x--;y--;
+            dList.push(x);
+            dList.push(y);
+        }
+        for(j =0; j<lvl; j++){
+            x++;y--;
+            dList.push(x);
+            dList.push(y);
+        }
+        for(i =0; i<lvl; i++){
+            x++;y++;
+            dList.push(x);
+            dList.push(y);
+        }
+        for(i =0; i<lvl; i++){
+            x--;y++;
+            dList.push(x);
+            dList.push(y);
+        }
+
+        y++;
+
+    }
+
+    
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+
+  for(var j = 0; j < tList.length / 2; j+=2){
+        client.query('INSERT INTO canvas_map_dev (xpos,ypos,bitmap,status) VALUES ($1, $2, $3, $4);', [dList[j], dList[j+1],'test',0]);
+
+
+  }
+
+
+  });
+});
 // inserts many
-app.get('/insertordered', function(request, response) {
+app.get('/insertorderedspiral', function(request, response) {
 
     var X = 101;
     var Y = 101;
