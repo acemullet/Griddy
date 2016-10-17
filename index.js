@@ -74,7 +74,7 @@ app.get('/insertordereddiamond', function(request, response) {
     var y;
     x = 26;
     y = 26;
-
+    dList = [];
     dList.push(x);
     dList.push(y);
     y++;
