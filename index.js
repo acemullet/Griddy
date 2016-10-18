@@ -2,7 +2,18 @@ var cool = require('cool-ascii-faces');
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var app = express();
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+app.get('/socket', function(req, res){
+  res.sendFile(__dirname + '/views/pages/testSession.html');
+
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 
 // //For Login Session
