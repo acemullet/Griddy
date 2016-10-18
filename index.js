@@ -1,7 +1,44 @@
 var cool = require('cool-ascii-faces');
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('client-sessions');
+
 var app = express();
+
+
+//For Login Session
+
+app.use(session({secret: 'ssshhhhh'}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+var sess;
+
+app.get('/sessionStart',function(req,res){
+  sess = req.session;
+  //Session set when user Request our app via URL
+  if(sess.user) {
+  /*
+  * This line check Session existence.
+  * If it existed will do some action.
+  */
+      res.redirect('/popRequest');
+  }
+  else {
+      res.render('index.html');
+  }
+});
+
+app.post('/login',function(req,res){
+  sess = req.session;
+//In this we are assigning email to sess.email variable.
+//email comes from HTML page.
+  sess.email=req.body.email;
+  res.end('done');
+});
+
+//End of Login Session
+
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
