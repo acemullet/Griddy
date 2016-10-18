@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 var sess;
 
-app.get('/sessionStart',function(req,res){
+app.post('/sessionStart',function(req,res){
   sess = req.session;
   //Session set when user Request our app via URL
   if(sess.user) {
