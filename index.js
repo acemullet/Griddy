@@ -110,8 +110,20 @@ app.get('/popRequest', function(request, response) {
       if (err){ console.error(err); response.send("Error " + err); }
       else{ 
 
-        response.render('pages/dbtest', {results: result.rows} ); 
+        //Get adjacent squares based on returnd squares
+        var xL,xR,xO,yU,yD,yO;
+        xO = result.rows.xpos;
+        yO = result.rows.ypos;
+                                               //UP                               //DOWN                             //LEFT                             //RIGHT                
+        client.query('SELECT bitmap FROM canvas_map_dev WHERE (xpos = $1 AND ypos = ($2 - 1)) OR (xpos = $1 AND ypos = ($2 - 1)) OR (xpos = ($1 - 1) AND ypos = $2) OR (xpos = ($1 + 1) AND ypos = $2)', [xO,yO], function(err, result) {
+        done();
+        if (err){ console.error(err); response.send("Error " + err); }
+        else
+          response.render('pages/dbtest', {results: result.rows} ); 
         
+        });
+
+
       }
     });
   });
