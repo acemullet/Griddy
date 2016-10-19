@@ -114,7 +114,7 @@ app.get('/popRequest', function(request, response) {
         var xL,xR,xO,yU,yD,yO;
         xO = result.rows.xpos;
         yO = result.rows.ypos;
-        response.render('pages/dbtest', {results: result.rows} ); 
+        response.render('pages/dbtest', {results: x0} ); 
 
         //                                        //UP                               //DOWN                             //LEFT                             //RIGHT                
         // client.query('SELECT bitmap FROM canvas_map_dev WHERE (xpos = $1 AND ypos = ($2 - 1)) OR (xpos = $1 AND ypos = ($2 - 1)) OR (xpos = ($1 - 1) AND ypos = $2) OR (xpos = ($1 + 1) AND ypos = $2)', [xO,yO], function(err, result2) {
