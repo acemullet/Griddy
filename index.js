@@ -3,17 +3,17 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+// var http = require('http').Server(app);
+// var io = require('socket.io')(http);
 
-app.get('/socket', function(req, res){
-  res.sendFile(__dirname + '/views/pages/testSession.html');
+// app.get('/socket', function(req, res){
+//   res.sendFile(__dirname + '/views/pages/testSession.html');
 
-});
+// });
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
+// io.on('connection', function(socket){
+//   console.log('a user connected');
+// });
 
 
 // //For Login Session
@@ -110,7 +110,7 @@ app.get('/popRequest', function(request, response) {
       if (err){ console.error(err); response.send("Error " + err); }
       else{ 
 
-        response.render('pages/dbtest', {results: result.rows} ); 
+        response.render('pages/testSession', {results: result.rows} ); 
         
       }
     });
