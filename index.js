@@ -110,7 +110,7 @@ app.get('/popRequest', function(request, response) {
       if (err){ console.error(err); response.send("Error " + err); }
       else{ 
 
-        response.render('pages/dbTest', {results: result.rows} ); 
+        response.render('pages/dbtest', {results: result.rows} ); 
         
       }
     });
