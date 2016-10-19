@@ -1,146 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-    body{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-    td {
-        width : 20px;
-        height : 20px;
-        color : white;
-        cursor: default;
-
-    }
-
-    table {
-    margin-left:auto; 
-    margin-right:auto;
-    margin-top:200px; 
-    }
-
-</style>
-
-<title>Crowdy</title>
-
+  <% include ../partials/header.ejs %>
 </head>
+
 <body>
 
-<button type="button">Test Jquery!</button>
-<h1><%= r.xpos %> - <%= r.ypos %></h1>
+<% include ../partials/nav.ejs %>
 
+<div class="container">
+<h2>Database Results</h2>
+
+
+<% results.forEach(function(r) { %>
+    <h1><%= r.xpos %> - <%= r.ypos %></h1>
+<% }); %>
+
+
+</div>
 
 </body>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<script>
-
-
-function myFunc(thing){
-    if(thing.style.backgroundColor == "black"){
-        thing.style.backgroundColor = "white";
-    }else{
-        thing.style.backgroundColor = "black";
-        
-    }
-
-}
-function tableCreate(){
-    var body = document.body,
-        tbl  = document.createElement('table');
-    tbl.style.width  = '100px';
-
-    for(var i = 0; i < 10; i++){
-        var tr = tbl.insertRow();
-        for(var j = 0; j < 10; j++){
-            var td = tr.insertCell();
-            td.appendChild(document.createTextNode("\u00A0\u00A0\u00A0\u00A0\u00A0"));
-            td.style.border = '1px solid black';
-            td.id = i+"and"+j;
-            td.backgroundColor="white";
-            td.onclick = function() { myFunc(this) };
-            
-        
-        }
-    }
-    body.appendChild(tbl);
-}
-
-function submitFunction(){
-    var colCompare = "black";
-    var vList = [];
-    for(i=0;i<10;i++){
-        for(j=0;j<10;j++){
-            var nam = i+"and"+j;
-            if(document.getElementById(nam).style.backgroundColor == "black")
-                vList += 0+"";//0 is for black
-            else
-                vList += 1+"";//1 is for white
-
-        }
-
-    }
-    return vList;
-    //postSubmit(vList+"");
-
-}
-
-function postSubmit(vList){
-    method = "post"; // Set method to post by default if not specified.
-    path = "https://stark-ocean-92194.herokuapp.com/postList";
-    
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    var hiddenField = document.createElement("input");
-    hiddenField.setAttribute("type", "text");
-    hiddenField.setAttribute("name", "vList");
-    hiddenField.setAttribute("value", vList);
-
-    form.appendChild(hiddenField);
-
-    document.body.appendChild(form);
-    form.submit();
-
-}
-
-function createButton(){
-
-    var submitButton = document.createElement('button');
-    submitButton.onclick = function() { submitFunction() };
-    var t = document.createTextNode("CLICK ME");     
-    submitButton.appendChild(t);
-    document.body.appendChild(submitButton);
-
-
-}
-
-tableCreate();
-createButton();
-
-$("button").click(function(){
-    $.post("https://stark-ocean-92194.herokuapp.com/postList",
-    {
-        vList : submitFunction()
-    },
-    function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-});
-
-
-</script>
-
 </html>
-
-
