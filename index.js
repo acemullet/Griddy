@@ -110,7 +110,7 @@ app.get('/popRequest', function(request, response) {
       if (err){ console.error(err); response.send("Error " + err); }
       else{ 
 
-        //Get adjacent squares based on returnd squares
+        //Get adjacent squares based on returned squares
         var xL,xR,xO,yU,yD,yO;
         xO = result.rows.xpos;
         yO = result.rows.ypos;
@@ -119,7 +119,7 @@ app.get('/popRequest', function(request, response) {
         //response.render('pages/dbtest', {results: result.rows} ); 
 
         //                                        //UP                               //DOWN                             //LEFT                             //RIGHT                
-        client.query('SELECT id,bitmap FROM canvas_map_dev WHERE (xpos = 26 AND ypos = (26 - 1)) OR (xpos = 26 AND ypos = (26 + 1)) OR (xpos = (26 - 1) AND ypos = 26) OR (xpos = (26 + 1) AND ypos = 26)', function(err, result) {
+        client.query('SELECT id,bitmap FROM canvas_map_dev WHERE (xpos = $1 AND ypos = ($2 - 1)) OR (xpos = $1 AND ypos = ($2 + 1)) OR (xpos = ($1 - 1) AND ypos = $2) OR (xpos = ($1 + 1) AND ypos = $2)',[xO,yO], function(err, result) {
            done();
            if (err){ console.error(err); response.send("Error " + err); 
            }else{
