@@ -124,7 +124,9 @@ app.get('/popRequest', function(request, response) {
            done();
            if (err){ console.error(err); response.send("Error " + err); 
            }else{
-             response.render('pages/dbtest', {results: result.rows} ); 
+
+             alert(x1);
+             //response.render('pages/dbtest', {results: result.rows} ); 
            }
          });
 
