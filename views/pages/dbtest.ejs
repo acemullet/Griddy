@@ -39,9 +39,11 @@
 <h2>Database Results</h2>
 
 
-<% results.forEach(function(r) { %>
-    <h1><%= r.id %></h1>
-<% }); %>
+<ul>
+    <% results.forEach(function(r) { %>
+        <li><%= r.bitmap %> - <%= r.id %></li>
+    <% }); %>
+</ul>
 
 <button action="testAlert()" value="Alert">
 
