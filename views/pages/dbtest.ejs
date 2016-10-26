@@ -49,6 +49,43 @@
 
 </div>
 
+<table>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+        
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+        
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+        
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+
+</table>
+
 </body>
 
 
@@ -71,6 +108,35 @@ function myFunc(thing){
     }
 
 }
+
+function mainTableCreate(){
+    var body = document.body,
+        tbl  = document.createElement('table');
+        tbl.style.width  = '310px';
+
+    for(var i = 0; i < 3; i++){
+        var tr = tbl.insertRow();
+        for(var j = 0; j < 3; j++){
+           tbl2  = document.createElement('table');
+           tbl2.style.width  = '100px';
+
+           for(var i = 0; i < 10; i++){
+           var tr2 = tbl2.insertRow();
+                for(var j = 0; j < 10; j++){
+                    var td = tr.insertCell();
+                    td.appendChild(document.createTextNode("\u00A0\u00A0\u00A0\u00A0\u00A0"));
+                    td.style.border = '1px solid black';
+                    td.id = i+"and"+j;
+                    td.backgroundColor="white";
+                    td.onclick = function() { myFunc(this) };
+                       
+                }
+            }                
+        }
+    }
+    body.appendChild(tbl);
+}
+
 function tableCreate(){
     var body = document.body,
         tbl  = document.createElement('table');
@@ -144,7 +210,7 @@ function createButton(){
 
 }
 
-tableCreate();
+mainTableCreate();
 createButton();
 
 $("button").click(function(){

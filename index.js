@@ -131,7 +131,7 @@ app.get('/popRequest', function(request, response) {
            }else{
 
              
-             response.render('pages/db', {results: result.rows} ); 
+             response.render('pages/dbtest', {results: result.rows} ); 
            }
          });
 
