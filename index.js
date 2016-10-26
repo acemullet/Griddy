@@ -113,6 +113,9 @@ app.get('/popRequest', function(request, response) {
         //Get adjacent squares based on returned squares
         var x1;
         var y1;
+        console.log(result);
+        
+
         x1 = result[0].xpos;
         y1 = result[0].ypos;
        
