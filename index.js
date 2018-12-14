@@ -108,7 +108,7 @@ app.post('/postList', function(request, response) {
   var name = request.body.vList +"";
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     //client.query("INSERT INTO test_table values($1, $2)", [2, name]);
-    client.query("INSERT INTO test_table valuess($1, $2)", [3, 'testing'], function(err, result) {
+    client.query("INSERT INTO test_table valuess($1, $2);", [3, 'testing'], function(err, result) {
       done();
       if (err){ console.error(err); response.send("Error " + err); }
       else{ client.query('SELECT * FROM test_table', function(err, result) {
