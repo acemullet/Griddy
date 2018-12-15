@@ -108,7 +108,7 @@ app.post('/postList', function(request, response) {
   var name = request.body.vList +"";
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     //client.query("INSERT INTO test_table values($1, $2)", [2, name]);
-    client.query('UPDATE canvas_map_dev2 SET bitmap=$1 WHERE id=1', [name], function(err, result) {
+    client.query('UPDATE canvas_map_dev2 SET bitmap=$2 WHERE id=$1', [1, name], function(err, result) {
       done();
       if (err){ console.error(err); response.send("Error " + err); }
       else{ client.query('SELECT * FROM canvas_map_dev2', function(err, result) {
