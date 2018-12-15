@@ -105,7 +105,7 @@ app.get('/db', function (request, response) {
 
 // START - FOR TESTING ON UNITY //
 app.post('/postList', function(request, response) {
-  var req = request.body;
+  var req = request.body.vList;
   var bitmap = request.body.vList +"";
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     //client.query("INSERT INTO test_table values($1, $2)", [2, name]);
