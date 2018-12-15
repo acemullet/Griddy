@@ -105,10 +105,11 @@ app.get('/db', function (request, response) {
 
 // START - FOR TESTING ON UNITY //
 app.post('/postList', function(request, response) {
-  var bitmap = request.body.bitmap;
+  var req = request.body;
+  var bitmap = request.body.vList +"";
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     //client.query("INSERT INTO test_table values($1, $2)", [2, name]);
-    client.query('UPDATE canvas_map_dev2 SET bitmap=$2 WHERE id=$1', [1, bitmap.toString()], function(err, result) {
+    client.query('UPDATE canvas_map_dev2 SET bitmap=$2 WHERE id=$1', [1, bitmap], function(err, result) {
       done();
       if (err){ console.error(err); response.send("Error " + err); }
       else{ client.query('SELECT * FROM canvas_map_dev2', function(err, result) {
@@ -116,7 +117,7 @@ app.post('/postList', function(request, response) {
           if (err)
           { console.error(err); response.send("Error " + err); }
           else
-          { response.send("Name : " + bitmap.toString); }
+          { response.send("Name : " + req); }
           /*else
           { response.render('pages/db', {results: result.rows} ); }*/
        });
